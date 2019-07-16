@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN" class="ua-windows ua-webkit book-new-nav">
+<head>
+    <meta charset="utf-8">
+    <title>
+        个人博客
+    </title>
+    <link href="https://img3.doubanio.com/f/book/7447c6dfeef0a88e2baaea2e4776bce9fd4cfb8e/css/book/master.css"
+          rel="stylesheet" type="text/css">
+
+    <link href="https://img3.doubanio.com/f/book/222a5c61e041638af8defc87cf97f4a863a77922/css/book/base/init.css"
+          rel="stylesheet">
+    <style type="text/css"></style>
+    <script>var _head_start = new Date();</script>
+
+    <link rel="stylesheet" href="https://img3.doubanio.com/misc/mixed_static/13419eb47c7c7dd7.css">
+
+</head>
+<body>
+
+<script>var _body_start = new Date();</script>
+
+
+<link href="//img3.doubanio.com/dae/accounts/resources/2f48733/shire/bundle.css" rel="stylesheet" type="text/css">
+
+<script>
+    ;window._GLOBAL_NAV = {
+        DOUBAN_URL: "https://www.douban.com",
+        N_NEW_NOTIS: 0,
+        N_NEW_DOUMAIL: 0
+    };
+</script>
+<script src="//img3.doubanio.com/dae/accounts/resources/2f48733/shire/bundle.js" defer="defer"></script>
+<link href="//img3.doubanio.com/dae/accounts/resources/2f48733/book/bundle.css" rel="stylesheet" type="text/css">
+{% block style %}
+{% endblock %}
+<div id="db-nav-book" class="nav">
+    <div class="nav-wrap">
+        <div class="nav-primary">
+            <div style="float: left;font-size: 30px">
+                <a href="#">我的博客</a>
+            </div>
+            <div class="nav-search">
+                <form action="https:&#47;&#47;book.douban.com/subject_search" method="get">
+                    <fieldset>
+                        <legend>搜索：</legend>
+                        <label for="inp-query">
+                        </label>
+                        <div class="inp"><input id="inp-query" name="search_text" size="22" maxlength="60"
+                                                placeholder="书名" value=""></div>
+                        <div class="inp-btn"><input type="submit" value="搜索"></div>
+                        <input type="hidden" name="cat" value="1001"/>
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div class="nav-secondary">
+        <div class="nav-items">
+            <ul >
+                <li style="margin-right: 100px"><a href="/">首页</a></li>
+                <li style="margin-right: 100px;"><a href="#">图书列表</a></li>
+                <li style="margin-right: 100px;"><a href="#">高评分榜单</a></li>
+                <li style="margin-right: 100px;"><a href="#">联系我</a></li>
+                {% if nickname %}
+                    <li style="float: right;"><a href="#">欢迎您：{{ nicknames.nickname }}</a></li>
+                {% else %}
+                    <li style="float: right;"><a href="/login/" >登录</a>|<a href="/register/">&nbsp;&nbsp;注册| <a href="/logout/">退出</a></a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% block content %}
+
+
+{% endblock %}
+
