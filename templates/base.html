@@ -42,13 +42,14 @@
                 <a href="#">我的博客</a>
             </div>
             <div class="nav-search">
-                <form action="https:&#47;&#47;book.douban.com/subject_search" method="get">
+                <form  method="post">
+                    {% csrf_token %}
                     <fieldset>
                         <legend>搜索：</legend>
                         <label for="inp-query">
                         </label>
                         <div class="inp"><input id="inp-query" name="search_text" size="22" maxlength="60"
-                                                placeholder="书名" value=""></div>
+                                                placeholder="暂未实现" value=""></div>
                         <div class="inp-btn"><input type="submit" value="搜索"></div>
                         <input type="hidden" name="cat" value="1001"/>
                     </fieldset>
@@ -61,21 +62,21 @@
         <div class="nav-items">
             <ul >
                 <li style="margin-right: 100px"><a href="/">首页</a></li>
-                <li style="margin-right: 100px;"><a href="#">图书列表</a></li>
-                <li style="margin-right: 100px;"><a href="#">高评分榜单</a></li>
+                <li style="margin-right: 100px;"><a href="/booklist/全部/1/">图书列表</a></li>
+                <li style="margin-right: 100px;"><a href="/booklist/高评分榜单/1/">高评分榜单</a></li>
                 <li style="margin-right: 100px;"><a href="#">联系我</a></li>
-                {% if nickname %}
-                    <li style="float: right;"><a href="#">欢迎您：{{ nicknames.nickname }}</a></li>
+                {% if cookie %}
+                    <li style="float: right;"><a href="#" style="margin-right: 5px;" >欢迎您：<span style="color: #00A5E4">&nbsp;{{ cookie.nickname }}</span></a> &nbsp;| <a href="/logout/" style="color: #00A5E4;margin-left: 5px;">退出</a></li>
                 {% else %}
-                    <li style="float: right;"><a href="/login/" >登录</a>|<a href="/register/">&nbsp;&nbsp;注册| <a href="/logout/">退出</a></a></li>
+                    <li style="float: right;"><a href="/login/" >登录</a>|<a href="/register/" style="margin-right: 10px;margin-left: 10px;">&nbsp;&nbsp;注册</a></li>
                 {% endif %}
+
             </ul>
         </div>
     </div>
 </div>
 
 {% block content %}
-
 
 {% endblock %}
 

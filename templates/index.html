@@ -21,14 +21,10 @@
                 <div class="section popular-books">
                     <div class="hd">
                         <h2>
-                            <span>推荐图书</span>
+                            <span>新书速递</span>
                             <span class="link-more">
-          <a href="/chart?subcat=F&amp;icn=index-topchart-fiction">小说类»</a>
-        </span>
-                            <span class="link-more">
-          <a href="/chart?icn=index-topchart-nonfiction">随笔类»</a>
-        </span>
-                        </h2>
+          <a href="/booklist/新书/1/">更多»</a>
+        </span>        </h2>
                     </div>
                     <div class="bd">
                         <ul class="list-col list-col2 list-summary s"
@@ -37,14 +33,14 @@
                             {% for book in book_list %}
                             <li class="">
                                 <div class="cover">
-                                        <img src="/static/{{ book.img }}"
+                                        <a href="/details/{{ book.id }}/"><img src="/static/{{ book.img }}"
                                              alt="{{ book.title }}" class="">
-                                    </a>
+                                   </a>
                                 </div>
                                 <div class="info">
                                     <h4 class="title">
                                         <a onclick="moreurl(this, {from:'pop_fiction'})"
-                                           href="/static/{{ book.img }}"
+                                           href="/details/{{ book.id }}/"
                                            class="">{{ book.title }}</a>
                                     </h4>
                                     <p class="entry-star-small">
@@ -104,146 +100,25 @@
                 <ul class="hot-tags-col5 s" data-dstat-areaid="54" data-dstat-mode="click,expose">
 
 
-                    <li>
-                        <ul class="clearfix">
-                            <li class="tag_title">
-                                文学
+                    <li >
+                        {% for types in type_list %}
+                        <ul class="clearfix" style="float: left;margin-right: 5px;">
+                            <li >
+                                <a href="/booklist/{{ types.label }}/1/" class="tag">{{ types.label }}</a>
                             </li>
-                            <li>
-                                <a href="/tag/小说" class="tag">小说</a>
-                            </li>
-                            <li>
-                                <a href="/tag/随笔" class="tag">随笔</a>
-                            </li>
-                            <li>
-                                <a href="/tag/日本文学" class="tag">日本文学</a>
-                            </li>
-                            <li class="last">
-                                <a href="/tag/散文" class="tag">散文</a>
-                            </li>
-                            <li>
-                                <a href="/tag/诗歌" class="tag">诗歌</a>
-                            </li>
-                            <li>
-                                <a href="/tag/童话" class="tag">童话</a>
-                            </li>
-                            <li>
-                                <a href="/tag/名著" class="tag">名著</a>
-                            </li>
-                            <li class="last">
-                                <a href="/tag/港台" class="tag">港台</a>
-                            </li>
-
                         </ul>
-                    </li>
-
-                    <li>
-                        <ul class="clearfix">
-                            <li class="tag_title">
-                                流行
-                            </li>
-                            <li>
-                                <a href="/tag/漫画" class="tag">漫画</a>
-                            </li>
-                            <li>
-                                <a href="/tag/推理" class="tag">推理</a>
-                            </li>
-                            <li>
-                                <a href="/tag/绘本" class="tag">绘本</a>
-                            </li>
-                            <li class="last">
-                                <a href="/tag/青春" class="tag">青春</a>
-                            </li>
-                            <li>
-                                <a href="/tag/科幻" class="tag">科幻</a>
-                            </li>
-                            <li>
-                                <a href="/tag/言情" class="tag">言情</a>
-                            </li>
-                            <li>
-                                <a href="/tag/奇幻" class="tag">奇幻</a>
-                            </li>
-                            <li class="last">
-                                <a href="/tag/武侠" class="tag">武侠</a>
-                            </li>
-
-                        </ul>
-                    </li>
-
-
-                    <li>
-                        <ul class="clearfix">
-                            <li class="tag_title">
-                                文化
-                            </li>
-                            <li>
-                                <a href="/tag/历史" class="tag">历史</a>
-                            </li>
-                            <li>
-                                <a href="/tag/哲学" class="tag">哲学</a>
-                            </li>
-                            <li>
-                                <a href="/tag/传记" class="tag">传记</a>
-                            </li>
-                            <li class="last">
-                                <a href="/tag/设计" class="tag">设计</a>
-                            </li>
-                            <li>
-                                <a href="/tag/建筑" class="tag">建筑</a>
-                            </li>
-                            <li>
-                                <a href="/tag/电影" class="tag">电影</a>
-                            </li>
-                            <li>
-                                <a href="/tag/回忆录" class="tag">回忆录</a>
-                            </li>
-                            <li class="last">
-                                <a href="/tag/音乐" class="tag">音乐</a>
-                            </li>
-
-                        </ul>
-                    </li>
-
-                    <li>
-                        <ul class="clearfix">
-                            <li class="tag_title">
-                                生活
-                            </li>
-                            <li>
-                                <a href="/tag/旅行" class="tag">旅行</a>
-                            </li>
-                            <li>
-                                <a href="/tag/励志" class="tag">励志</a>
-                            </li>
-                            <li>
-                                <a href="/tag/教育" class="tag">教育</a>
-                            </li>
-                            <li class="last">
-                                <a href="/tag/职场" class="tag">职场</a>
-                            </li>
-                            <li>
-                                <a href="/tag/美食" class="tag">美食</a>
-                            </li>
-                            <li>
-                                <a href="/tag/灵修" class="tag">灵修</a>
-                            </li>
-                            <li>
-                                <a href="/tag/健康" class="tag">健康</a>
-                            </li>
-                            <li class="last">
-                                <a href="/tag/家居" class="tag">家居</a>
-                            </li>
-
-                        </ul>
+                        {% endfor %}
                     </li>
 
                 </ul>
 
                 <!-- douban ad begin -->
                 <div id="dale_book_homepage_right_bottom" class="ad-placeholder"></div>
-<div class="section weekly-top">
+<div class="section weekly-top" style="margin-top: 110px;">
     <div class="hd">
-        <h2>畅销图书榜<span style="font-size: 14px;">>><a href="#">京东</a></span></h2>
+
+
+        <p><h2 style="margin-top: 20px;">畅销图书榜<span style="font-size: 14px;">>><a href="#">京东</a></span></h2></p>
 
     </div>
     <div class="bd">
@@ -253,7 +128,7 @@
                 <li class="item">
                     <span class="rank-num">{{ book.id }}.</span>
                     <div class="book-info">
-                        <a href="#" class="name" >{{ book.title }}</a>
+                        <a href="/details/{{ book.id }}" class="name" >{{ book.title }}</a>
                         <div class="author">{{ book.author }}</div>
                     </div>
 

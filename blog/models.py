@@ -2,10 +2,9 @@ from django.db import models
 
 # Create your models here.
 class User(models.Model):
-    username = models.CharField(max_length=32,unique=True,verbose_name='账号')
-    password = models.CharField(max_length=16,verbose_name='登录密码')
+    password = models.CharField(max_length=64,verbose_name='登录密码')
     nickname = models.CharField(default='暂无',verbose_name='昵称',max_length=32)
-    email = models.CharField(max_length=32)
+    email = models.CharField(max_length=32,unique=True)
     verification_code = models.CharField(verbose_name='邮箱验证码',null=True,max_length=32)
     head_portrait = models.ImageField(upload_to='images',default='/images/moren.jpg')
 class Types(models.Model):
@@ -13,7 +12,7 @@ class Types(models.Model):
 class Tushu(models.Model):
     title = models.CharField(max_length=32)
     author = models.CharField(max_length=32)
-    press = models.CharField(max_length=32)
+    press = models.CharField(max_length=64)
     press_year = models.CharField(max_length=32)
     page = models.CharField(max_length=32)
     price = models.CharField(max_length=32)

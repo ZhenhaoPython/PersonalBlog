@@ -1,0 +1,158 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" class="ua-windows ua-webkit book-new-nav">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>
+  图书列表
+</title>
+
+<script>!function(e){var o=function(o,n,t){var c,i,r=new Date;n=n||30,t=t||"/",r.setTime(r.getTime()+24*n*60*60*1e3),c="; expires="+r.toGMTString();for(i in o)e.cookie=i+"="+o[i]+c+"; path="+t},n=function(o){var n,t,c,i=o+"=",r=e.cookie.split(";");for(t=0,c=r.length;t<c;t++)if(n=r[t].replace(/^\s+|\s+$/g,""),0==n.indexOf(i))return n.substring(i.length,n.length).replace(/\"/g,"");return null},t=e.write,c={"douban.com":1,"douban.fm":1,"google.com":1,"google.cn":1,"googleapis.com":1,"gmaptiles.co.kr":1,"gstatic.com":1,"gstatic.cn":1,"google-analytics.com":1,"googleadservices.com":1},i=function(e,o){var n=new Image;n.onload=function(){},n.src="https://www.douban.com/j/except_report?kind=ra022&reason="+encodeURIComponent(e)+"&environment="+encodeURIComponent(o)},r=function(o){try{t.call(e,o)}catch(e){t(o)}},a=/<script.*?src\=["']?([^"'\s>]+)/gi,g=/http:\/\/(.+?)\.([^\/]+).+/i;e.writeln=e.write=function(e){var t,l=a.exec(e);return l&&(t=g.exec(l[1]))?c[t[2]]?void r(e):void("tqs"!==n("hj")&&(i(l[1],location.href),o({hj:"tqs"},1),setTimeout(function(){location.replace(location.href)},50))):void r(e)}}(document);
+</script>
+
+
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="Sun, 6 Mar 2005 01:00:00 GMT">
+
+  <script>var _head_start = new Date();</script>
+
+  <link href="https://img3.doubanio.com/f/book/7447c6dfeef0a88e2baaea2e4776bce9fd4cfb8e/css/book/master.css" rel="stylesheet" type="text/css">
+
+
+  <style type="text/css"></style>
+
+  <link rel="stylesheet" href="https://img3.doubanio.com/misc/mixed_static/28fc3e84f96f7794.css">
+
+  <link rel="shortcut icon" href="https://img3.doubanio.com/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <script>var _body_start = new Date();</script>
+
+
+
+
+
+    <link href="//img3.doubanio.com/dae/accounts/resources/2f48733/shire/bundle.css" rel="stylesheet" type="text/css">
+
+    <script src="//img3.doubanio.com/dae/accounts/resources/2f48733/shire/bundle.js" defer="defer"></script>
+
+
+
+
+
+
+
+
+    <link href="//img3.doubanio.com/dae/accounts/resources/2f48733/book/bundle.css" rel="stylesheet" type="text/css">
+
+    <script src="//img3.doubanio.com/dae/accounts/resources/2f48733/book/bundle.js" defer="defer"></script>
+
+
+
+
+
+    <div id="wrapper">
+
+
+  <div id="content">
+
+    <h1>{{ types }}</h1>
+
+    <div class="grid-16-8 clearfix">
+
+      <div class="article">
+  <div id="subject_list">
+
+
+
+    {% if types != '高评分榜单'  %}
+        {% if types != '新书' %}
+  <div class="clearfix">
+    <span class="rr greyinput">
+          综合排序
+          &nbsp;/&nbsp;
+          <a href="/booklist/日期/1/">按出版日期排序</a>
+          &nbsp;/&nbsp;
+
+          <a href="#">按评价排序</a>
+    </span>
+  </div>
+            {% endif %}
+  {% endif %}
+{% for book in booklist %}
+  <ul class="subject-list">
+
+  <li class="subject-item">
+    <div class="pic">
+      <a class="nbg" href="/details/{{ book.id }}/">
+        <img class="" src="/static/{{ book.img }}"
+          width="90">
+      </a>
+    </div>
+    <div class="info">
+      <h2 class="">
+
+  <a href="/details/{{ book.id }}" title="{{ book.title }}">
+
+    {{ book.title }}
+  </a>
+
+      </h2>
+      <div class="pub">
+
+  {{ book.author }} / {{ book.press }} / {{ book.press_year }} / {{ book.price }}
+
+      </div>
+
+  <div class="star clearfix">
+        <span class="rating_nums">评分：{{ book.score }}</span>
+
+    <span class="pl">
+        (462881人评价)
+    </span>
+  </div>
+
+    <p>评价 </p>
+      <div class="ft">
+
+  <div class="collect-info">
+  </div>
+
+
+      </div>
+
+    </div>
+  </li>
+{% endfor %}
+
+  </ul>
+
+        <div class="paginator">
+       {% for pages in page_range %}
+            <a href="/booklist/{{ types }}/{{ pages }}/" >{{ pages }}</a>
+        {% endfor %}
+        </div>
+
+
+  </div>
+</div>
+      <div class="aside">
+
+  <br/>
+  <div id="dale_book_tag_top_right"></div>
+
+      </div>
+      <div class="extra">
+
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>
+{% endblock %}
