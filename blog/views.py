@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponseRedirect
 from blog.models import *
-import hashlib
+import hashlib,time
 from pymysql import connect
 
 
@@ -21,28 +21,54 @@ def loginValid(fun):
 
 def base(request):
     cookie = request.COOKIES.get('email')
-    if request.method == 'POST':
-        x = request.POST.get('search_text')
-        booklist = Tushu.objects.filter(title=f'select * from blog_tushu where title like "{x}"')
-        return render(request,'book_list.html',locals())
+
     return render(request,'base.html',locals())
 
 def index(request):
     cookie = request.COOKIES.get('email')
     if cookie:
         cookie = User.objects.get(email=cookie)
-    book_list = Tushu.objects.all().order_by('-press_year')[:10]
+    book_list = Tushu.objects.order_by('-press_year')[:10]
     type_list = Types.objects.all()[:22]
     booke = Tushu.objects.all()[:10]
     return render(request,'index.html',locals())
 def details(request,id):
     cookie = request.COOKIES.get('email')
-    cookie = User.objects.get(email=cookie)
+    if cookie:
+        cookie = User.objects.get(email=cookie)
+        tushu = Tushu.objects.get(id=id)
+        tushu.reading_num = str(int(tushu.reading_num)+1)
+        tushu.save()
+        read = Read()
+        read.articles_id = id
+        read.name = cookie.nickname
+        read.data = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+        read.image = cookie.head_portrait
+        read.save()
+    if request.method == 'POST':
+        if cookie:
+            content = request.POST.get('pinglun')
+            articles = Tushu.objects.filter(id=id)
+            article = [article.title for article in articles][0]
+            nickname = cookie.nickname
+            message = Message()
+            message.data =time.strftime('%Y-%m-%d', time.localtime(time.time()))
+            message.contents = content
+            message.article_id = id
+            message.name = nickname
+            message.save()
+            tushu = Tushu.objects.get(id=id)
+            tushu.comments_num = str(int(tushu.comments_num)+1)
+            tushu.save()
+
+        else:
+            return HttpResponseRedirect('/login/')
     book_list = Tushu.objects.filter(id=id)
     type_list = Tushu.objects.filter(types=[book.types for book in book_list][0])[:10]
+    message_list = Tushu.objects.get(id=id).message_set.order_by('-data')
+    reading_list = Tushu.objects.get(id=id).read_set.order_by('-data')[:5]
     return render(request,'details.html',locals())
 def login(request):
-
     if request.method=='POST':
         email = request.POST.get('username')
         password = request.POST.get('password')
@@ -77,15 +103,17 @@ def logout(request):
     response.delete_cookie('email')
     return response
 def book_list(request,types,page):
+
     cookie = request.COOKIES.get('email')
-    cookie = User.objects.get(email=cookie)
+    if cookie:
+        cookie = User.objects.get(email=cookie)
     page_int = int(page)
     start = (page_int-1)*10
     end = page_int*10
     if types=='新书':
         booklist = Tushu.objects.all().order_by('-press_year')[:20]
     elif types=='高评分榜单':
-        booklist = Tushu.objects.all().order_by('-score')[:20]
+        booklist = Tushu.objects.all().order_by('-score')[:10]
     elif types=='全部':
         booklist = Tushu.objects.all()[start:end]
         if page_int<3:
@@ -98,7 +126,20 @@ def book_list(request,types,page):
             page_range = range(1,6)
         else:
             page_range = range(page_int - 2, page_int + 3)
+    elif types =='评分':
+        booklist = Tushu.objects.all().order_by('-score')[start:end]
+        if page_int < 3:
+            page_range = range(1, 6)
+        else:
+            page_range = range(page_int - 2, page_int + 3)
     else:
         booklist = Tushu.objects.filter(types=types)
 
     return render(request,'book_list.html',locals())
+
+def prefack_home(request):
+    return render(request,'personal_home.html')
+
+def home(request):
+    if request.method=='POST':
+        img = request.FILES.get('img')

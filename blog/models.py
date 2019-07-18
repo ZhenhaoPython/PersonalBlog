@@ -23,8 +23,15 @@ class Tushu(models.Model):
     imtroducyion = models.TextField()
     types = models.CharField(max_length=32)
     img = models.CharField(max_length=64)
+    reading_num = models.CharField(max_length=32,default='0')
+    comments_num = models.CharField(max_length=32,default='0')
 class Message(models.Model):
-    name = models.ForeignKey('User',on_delete=True)
-    data = models.DateTimeField(auto_now_add=True)
-    content = models.TextField(null=False)
+    name = models.CharField(max_length=32)
+    data = models.DateField(auto_now_add=True)
+    contents = models.TextField(null=False)
     article = models.ForeignKey('Tushu',on_delete=True)
+class Read(models.Model):
+    articles = models.ForeignKey('Tushu',on_delete=True)
+    name = models.CharField(max_length=32)
+    data = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='images',default='/images/moren.jpg')

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+    <style>
+    table,table tr th,table td{
+       border:1px solid #ccc;
+        margin-left: 250px;
+        height: 60px;
+        }
+    .td{
+        height: 30px;
+        width: 300px;
+        margin-left: 30px;
+    }
+    .label{
+        font-size: 20px;
+        margin-left: 20px;
+        margin-top: 1px;
+        display: block;
+        background-color: #00A5E4;
+        color: #fff;
+        width: 150px;
+        text-align: center;
+    }
+    </style>
+{% endblock %}
+{% block content %}
+    <div style="float:left;">
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <table width="600px" height="400px" cellpadding="1px" cellspacing="1px" >
+            <tr>
+                <td colspan="2" style="text-align: center"><h1>编辑资料</h1></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="昵称" placeholder="昵称" class="td">
+                </td>
+                <td rowspan="7">
+                    <div style="margin-left: 45px;margin-bottom: 220px ;">
+                    <img src="/static/img/nemo.jpg" style="width: 150px;height: 150px;">
+                    <p><input type="file" name="img" id="img" ></p></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="xingming" placeholder="姓名" class="td">
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="age" placeholder="年龄" class="td">
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="work" placeholder="工作" class="td">
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="tel" placeholder="电话" class="td">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="address" placeholder="地址" class="td">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="提交" id="submit" class="td">
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+    <div style="float: left;width: 1px;height: 500px;background-color: #ccc;margin-left: 200px;"></div >
+    <div style="float: left">
+        <p class="label"><a href="#">编辑资料</a></p>
+        <p class="label"><a href="#">修改密码</a></p>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+    $(
+        function () {
+            $('#submit').click(function () {
+                var forms = new FormData();
+                forms.append('image',document.getElementById('img').files[0])
+            })
+        }
+    )
+    </script>
+{% endblock %}

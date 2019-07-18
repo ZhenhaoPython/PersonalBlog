@@ -68,7 +68,7 @@
                 {% if cookie %}
                     <li style="float: right;"><a href="#" style="margin-right: 5px;" >欢迎您：<span style="color: #00A5E4">&nbsp;{{ cookie.nickname }}</span></a> &nbsp;| <a href="/logout/" style="color: #00A5E4;margin-left: 5px;">退出</a></li>
                 {% else %}
-                    <li style="float: right;"><a href="/login/" >登录</a>|<a href="/register/" style="margin-right: 10px;margin-left: 10px;">&nbsp;&nbsp;注册</a></li>
+                    <li style="float: right;"><a href="/login/" style="margin-right: 15px" >登录</a>|<a href="/register/" style="margin-left: 15px;">注册</a></li>
                 {% endif %}
 
             </ul>
@@ -78,5 +78,7 @@
 
 {% block content %}
 
+{% endblock %}
+{% block script %}
 {% endblock %}
 

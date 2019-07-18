@@ -20,9 +20,10 @@ from blog.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path('^$',index),
-    re_path('details/(\d+)',details),
+    re_path('details/(\w+)/',details),
     path('login/',login),
     path('register/',register),
     path('logout/',logout),
-    re_path('booklist/(\w+)/(\d+)',book_list)
+    re_path('booklist/(\w+)/(\d+)/',book_list),
+    path('home/',prefack_home)
 ]

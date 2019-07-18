@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% block style %}
+{% endblock %}
 {% block content %}
     <div id="wrapper" xmlns="http://www.w3.org/1999/html">
 
@@ -212,14 +214,6 @@ $(function(){$(".knnlike a").click(function(){return moreurl(this,{'from':'knnli
     <link rel="stylesheet" href="https://img3.doubanio.com/f/book/3ec79645ad5a5d15c9ead3c58da97f5d662c7400/css/book/subject/comment.css"/>
     <div class="mod-hd">
 
-
-        <a class="redbutt j a_show_login rr" href="https://www.douban.com/register?reason=review" rel="nofollow">
-            <span> 我来说两句 </span>
-        </a>
-
-
-
-
   <h2>
     <span class="">短评</span>
       &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;
@@ -233,302 +227,33 @@ $(function(){$(".knnlike a").click(function(){return moreurl(this,{'from':'knnli
 
 <div id="comments" class="comment-list hot show">
         <ul>
-
+{% for message in message_list %}
     <li class="comment-item" data-cid="823290667">
         <div class="comment">
             <h3>
-                <span class="comment-vote">
-                    <span id="c-823290667" class="vote-count">3399</span>
-                        <a href="javascript:;" id="btn-823290667" class="j a_show_login" data-cid="823290667">有用</a>
-                </span>
                 <span class="comment-info">
-                    <a href="https://www.douban.com/people/gucci122/">Miffygaga</a>
-                        <span class="user-stars allstar40 rating" title="推荐"></span>
-                    <span>2014-07-30</span>
+                    <a href="#">{{ message.name }}</a>
+                    <span>{{ message.data }}</span>
                 </span>
             </h3>
             <p class="comment-content">
 
-                <span class="short">对于东野来说，这是一本温柔的小书。可能也只有东野，能把看似这么多温柔美好的小故事，巧妙精致地联接起来，读到最后一分钟，才恍悟原来前后都是有必然联系的。人生如此奇妙，不好好过又对得起谁。</span>
+                <span class="short">{{ message.contents }}</span>
             </p>
         </div>
     </li>
-
-
-    <li class="comment-item" data-cid="832530074">
-        <div class="comment">
-            <h3>
-                <span class="comment-vote">
-                    <span id="c-832530074" class="vote-count">1093</span>
-                        <a href="javascript:;" id="btn-832530074" class="j a_show_login" data-cid="832530074">有用</a>
-                </span>
-                <span class="comment-info">
-                    <a href="https://www.douban.com/people/mysubi/">苏比</a>
-                        <span class="user-stars allstar30 rating" title="还行"></span>
-                    <span>2014-08-03</span>
-                </span>
-            </h3>
-            <p class="comment-content">
-
-                <span class="short">白夜行的结构，平行世界的构思，击不中痛点的煽情，做作的巧合，excel写作的作者。还不如看天涯帖子，我要回1997年了。</span>
-            </p>
-        </div>
-    </li>
-
-
-    <li class="comment-item" data-cid="830871382">
-        <div class="comment">
-            <h3>
-                <span class="comment-vote">
-                    <span id="c-830871382" class="vote-count">5023</span>
-                        <a href="javascript:;" id="btn-830871382" class="j a_show_login" data-cid="830871382">有用</a>
-                </span>
-                <span class="comment-info">
-                    <a href="https://www.douban.com/people/oddpeak/">向亦异</a>
-                        <span class="user-stars allstar50 rating" title="力荐"></span>
-                    <span>2014-08-20</span>
-                </span>
-            </h3>
-            <p class="comment-content">
-
-                <span class="short">我想把这本书推荐给我所有重要的人看</span>
-            </p>
-        </div>
-    </li>
-
-
-    <li class="comment-item" data-cid="881676382">
-        <div class="comment">
-            <h3>
-                <span class="comment-vote">
-                    <span id="c-881676382" class="vote-count">758</span>
-                        <a href="javascript:;" id="btn-881676382" class="j a_show_login" data-cid="881676382">有用</a>
-                </span>
-                <span class="comment-info">
-                    <a href="https://www.douban.com/people/foxsshome/">水湄物语</a>
-                        <span class="user-stars allstar40 rating" title="推荐"></span>
-                    <span>2015-01-11</span>
-                </span>
-            </h3>
-            <p class="comment-content">
-
-                <span class="short">其实所有的答案都在自己的心里。 </span>
-            </p>
-        </div>
-    </li>
-
-
-    <li class="comment-item" data-cid="877889604">
-        <div class="comment">
-            <h3>
-                <span class="comment-vote">
-                    <span id="c-877889604" class="vote-count">719</span>
-                        <a href="javascript:;" id="btn-877889604" class="j a_show_login" data-cid="877889604">有用</a>
-                </span>
-                <span class="comment-info">
-                    <a href="https://www.douban.com/people/Leiou/">Leo____L</a>
-                        <span class="user-stars allstar50 rating" title="力荐"></span>
-                    <span>2015-01-02</span>
-                </span>
-            </h3>
-            <p class="comment-content">
-
-                <span class="short">一本打动人的书！就像金庸会写出鹿鼎记一样，东野圭吾也会写出解忧杂货店这种非典型作品，但是这不能妨碍它成为寒冷冬天的温暖解药，读第二遍感觉更好。神来之笔的时间空间转换，几个的小故事，人与人的羁绊，从低谷到转机，从忧虑到豁达，来自这么一个不起眼的杂货店。在奥运集训和陪伴男友中选择；鱼店音乐人留下的&#34;重生&#34;；和父母跑路的木雕家保罗列侬；为经济窘境选择陪酒小姐的汪汪；而解答33年前疑惑的3个偷车人，在无意...</span>
-                <span class="hide-item full">一本打动人的书！就像金庸会写出鹿鼎记一样，东野圭吾也会写出解忧杂货店这种非典型作品，但是这不能妨碍它成为寒冷冬天的温暖解药，读第二遍感觉更好。神来之笔的时间空间转换，几个的小故事，人与人的羁绊，从低谷到转机，从忧虑到豁达，来自这么一个不起眼的杂货店。在奥运集训和陪伴男友中选择；鱼店音乐人留下的&#34;重生&#34;；和父母跑路的木雕家保罗列侬；为经济窘境选择陪酒小姐的汪汪；而解答33年前疑惑的3个偷车人，在无意中抢劫汪汪出逃后，继承了店主的意志，最终收到了浪矢给出的人生解答：空白的地图要自己去画！杂货店和孤儿院，浪矢与孤儿院主人的感情凝结成神秘的时光隧道，两条神奇的脉络不断地穿插在各色人生之中，给人一种大片的即视感！在寒冷的冬天里给人无限温暖和希望！</span>
-                <span class="expand">(<a href="javascript:;">展开</a>)</span>
-            </p>
-        </div>
-    </li>
-
-
+{% endfor %}
         </ul>
 </div>
 
-
-
-<div id="comments" class="comment-list new noshow">
-        <ul>
-
-    <li class="comment-item" data-cid="1862426290">
-        <div class="comment">
-            <h3>
-                <span class="comment-vote">
-                    <span id="c-1862426290" class="vote-count">0</span>
-                        <a href="javascript:;" id="btn-1862426290" class="j a_show_login" data-cid="1862426290">有用</a>
-                </span>
-                <span class="comment-info">
-                    <a href="https://www.douban.com/people/148163241/">KingKong90</a>
-                        <span class="user-stars allstar40 rating" title="推荐"></span>
-                    <span>2019-07-16</span>
-                </span>
-            </h3>
-            <p class="comment-content">
-
-                <span class="short">消遣类作品</span>
-            </p>
-        </div>
-    </li>
-
-
-    <li class="comment-item" data-cid="1862424536">
-        <div class="comment">
-            <h3>
-                <span class="comment-vote">
-                    <span id="c-1862424536" class="vote-count">0</span>
-                        <a href="javascript:;" id="btn-1862424536" class="j a_show_login" data-cid="1862424536">有用</a>
-                </span>
-                <span class="comment-info">
-                    <a href="https://www.douban.com/people/132850319/">Mr.yu</a>
-                        <span class="user-stars allstar30 rating" title="还行"></span>
-                    <span>2019-07-16</span>
-                </span>
-            </h3>
-            <p class="comment-content">
-
-                <span class="short">还行吧。</span>
-            </p>
-        </div>
-    </li>
-
-
-    <li class="comment-item" data-cid="1862381401">
-        <div class="comment">
-            <h3>
-                <span class="comment-vote">
-                    <span id="c-1862381401" class="vote-count">0</span>
-                        <a href="javascript:;" id="btn-1862381401" class="j a_show_login" data-cid="1862381401">有用</a>
-                </span>
-                <span class="comment-info">
-                    <a href="https://www.douban.com/people/197144962/">我来对付你</a>
-                        <span class="user-stars allstar40 rating" title="推荐"></span>
-                    <span>2019-07-16</span>
-                </span>
-            </h3>
-            <p class="comment-content">
-
-                <span class="short">每一个选择都很重要</span>
-            </p>
-        </div>
-    </li>
-
-
-    <li class="comment-item" data-cid="1862366242">
-        <div class="comment">
-            <h3>
-                <span class="comment-vote">
-                    <span id="c-1862366242" class="vote-count">0</span>
-                        <a href="javascript:;" id="btn-1862366242" class="j a_show_login" data-cid="1862366242">有用</a>
-                </span>
-                <span class="comment-info">
-                    <a href="https://www.douban.com/people/199813836/">柠檬泡芙香茶</a>
-                        <span class="user-stars allstar50 rating" title="力荐"></span>
-                    <span>2019-07-16</span>
-                </span>
-            </h3>
-            <p class="comment-content">
-
-                <span class="short">让人忍不住也想拥有一个解忧杂货店了</span>
-            </p>
-        </div>
-    </li>
-
-
-    <li class="comment-item" data-cid="1862358342">
-        <div class="comment">
-            <h3>
-                <span class="comment-vote">
-                    <span id="c-1862358342" class="vote-count">0</span>
-                        <a href="javascript:;" id="btn-1862358342" class="j a_show_login" data-cid="1862358342">有用</a>
-                </span>
-                <span class="comment-info">
-                    <a href="https://www.douban.com/people/101949274/">叁月赵赵</a>
-                        <span class="user-stars allstar50 rating" title="力荐"></span>
-                    <span>2019-07-16</span>
-                </span>
-            </h3>
-            <p class="comment-content">
-
-                <span class="short">鸡汤故事</span>
-            </p>
-        </div>
-    </li>
-
-
-        </ul>
-</div>
 
     </div>
-        <p>&gt; <a href="https://book.douban.com/subject/25862578/comments/">更多短评 141469 条</a></p>
+        <p>&gt; <a href="https://book.douban.com/subject/25862578/comments/">更多短评>></a></p>
     <script src="https://img3.doubanio.com/f/book/f334de0b97baf7506d0c181ff24dc61f9a7fca64/js/book/subject/short_comment_vote.js"></script>
     <script src="https://img3.doubanio.com/f/book/39eace58cab8aaeec45a44e878bf0ed06f2ed0a4/js/book/subject/short_comment_nav.js"></script>
-    <script>
-        (function(){
-            $('.comment-list').delegate('.vote-comment', 'click', function(e) {
-                vote_comment(e);
-            }).delegate('.delete-comment', 'click', function(e) {
-                if (confirm('确定删除吗？')) {
-                    delete_comment(e);
-                }
-            });
-        })();
-    </script>
-
 
 
 <link rel="stylesheet" href="https://img3.doubanio.com/misc/mixed_static/5b893040c800d5cd.css">
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    var TEMPL_ADD_COL = '<a href="" id="n-{NOTE_ID}" class="colbutt ll add-col"><span>收藏</span></a>',
-      TEMPL_DEL_COL = '<span class="pl">已收藏 &gt;<a href="" id="n-{NOTE_ID}" class="del-col">取消收藏</a></span>';
-
-    $('body').delegate('.add-col', 'click', function(e){
-      e.preventDefault();
-      var nnid = $(this).attr('id').split('-')[1],
-        bn_add = $(this);
-      $.post_withck("/j/book/annotation_collect",{nid:nnid},function(){
-        var a = $(TEMPL_DEL_COL.replace('{NOTE_ID}', nnid));
-        bn_add.before(a);
-        bn_add.remove();
-      })
-    });
-
-    $('body').delegate('.del-col', 'click', function(e){
-      e.preventDefault();
-      var nnid = $(this).attr('id').split('-')[1],
-        bn_del = $(this).parent();
-      $.post_withck("/j/book/annotation_uncollect", {nid: nnid}, function() {
-        var a = $(TEMPL_ADD_COL.replace('{NOTE_ID}', nnid));
-        bn_del.before(a);
-        bn_del.remove();
-      })
-    });
-
-    $("pre.source").each(function(){
-      var cn = $(this).attr('class').split(' ');
-      l = cn[1];
-      s = 'rand01';
-      n = cn[2];
-      $(this).snippet(n,{style: s, showNum: l});
-    });
-
-    var annotationMod = $('.reading-notes .bd')
-      , annotationTabs = annotationMod.find('.inline-tabs li')
-      , annotationTabLinks = annotationTabs.find('a')
-      , annotationTabContents = annotationMod.find('ul.comments');
-
-    annotationTabLinks.click(function(e){
-      e.preventDefault();
-      var el = $(this)
-        , kind = el.attr('id');
-
-      annotationTabs.removeClass('on');
-      el.parent().addClass('on');
-      annotationTabContents.hide();
-      annotationTabContents.filter('.' + kind).show();
-    });
-  });
-</script>
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -545,8 +270,6 @@ MathJax.Hub.Config({
 	showProcessingMessages: false
   });
 </script>
-
-
 
 </div>
 <script type="text/javascript">
@@ -727,25 +450,12 @@ $(function(){if($.browser.msie && $.browser.version == 6.0){
   <div class="indent" id="collector">
 
 
-
+{% for rend in reading_list %}
 <div class="">
 
-    <div class="ll"><a href="https://www.douban.com/people/181011941/"><img src="https://img3.doubanio.com/icon/u181011941-1.jpg" class="pil" alt="妖精" /></a></div>
-    <div style="padding-left:60px"><a class="" href="https://www.douban.com/people/181011941/">妖精</a><br/>
-      <div class="pl ll">          刚刚          读过      </div>
-
-        <span class="allstar50" title="力荐"></span>
-      <br/>
-
-    </div>
-    <div class="clear"></div><br/>
-    <div class="ul" style="margin-bottom:12px;"></div>
-</div>
-<div class="">
-
-    <div class="ll"><a href="https://www.douban.com/people/155884333/"><img src="https://img3.doubanio.com/icon/u155884333-2.jpg" class="pil" alt="一只杏红红" /></a></div>
-    <div style="padding-left:60px"><a class="" href="https://www.douban.com/people/155884333/">一只杏红红</a><br/>
-      <div class="pl ll">          1分钟前          想读      </div>
+    <div class="ll"><a href="https://www.douban.com/people/181011941/"><img src="/static{{ read.image }}" class="pil" alt="{{ read.name }}" /></a></div>
+    <div style="padding-left:60px"><a class="" href="https://www.douban.com/people/181011941/">{{ read.name }}</a><br/>
+      <div class="pl ll">          {{ read.data }}          浏览过      </div>
 
       <br/>
 
@@ -753,33 +463,19 @@ $(function(){if($.browser.msie && $.browser.version == 6.0){
     <div class="clear"></div><br/>
     <div class="ul" style="margin-bottom:12px;"></div>
 </div>
-<div class="">
+{% endfor %}
+      <h2>在这评论：</h2>
 
-    <div class="ll"><a href="https://www.douban.com/people/146333752/"><img src="https://img3.doubanio.com/icon/u146333752-4.jpg" class="pil" alt="榴莲论诗" /></a></div>
-    <div style="padding-left:60px"><a class="" href="https://www.douban.com/people/146333752/">榴莲论诗</a><br/>
-      <div class="pl ll">          2分钟前          读过      </div>
+      <div style="width: 300px;height: 300px;">
+          <form method="post">
+              {% csrf_token %}
+                <div >
+                    <input type="text" name="pinglun" placeholder="评论：" style="width: 300px;height: 50px;border: #000 1px solid;border-radius: 10px;overflow: hidden;">
+                </div>
 
-        <span class="allstar30" title="还行"></span>
-      <br/>
-
-    </div>
-    <div class="clear"></div><br/>
-    <div class="ul" style="margin-bottom:12px;"></div>
-</div>
-<div class="">
-
-    <div class="ll"><a href="https://www.douban.com/people/160951708/"><img src="https://img3.doubanio.com/icon/u160951708-1.jpg" class="pil" alt="🍬" /></a></div>
-    <div style="padding-left:60px"><a class="" href="https://www.douban.com/people/160951708/">🍬</a><br/>
-      <div class="pl ll">          3分钟前          读过      </div>
-
-        <span class="allstar50" title="力荐"></span>
-      <br/>
-
-    </div>
-    <div class="clear"></div><br/>
-    <div class="ul" style="margin-bottom:12px;"></div>
-</div>
-
+                  <input type="submit" value="提交" style="margin-left: 250px;margin-top:10px;width: 50px;height:25px;color:#fff;background-color: rgb(51,118,169)">
+          </form>
+      </div>
   </div>
 
       </div>

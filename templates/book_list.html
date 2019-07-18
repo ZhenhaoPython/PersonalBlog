@@ -69,19 +69,18 @@
 
 
 
-    {% if types != '高评分榜单'  %}
-        {% if types != '新书' %}
+    {% if types == '全部' or types == '日期' or types == '评分'  %}
+
   <div class="clearfix">
     <span class="rr greyinput">
-          综合排序
+        <a href="/booklist/全部/1/">综合排序</a>
           &nbsp;/&nbsp;
           <a href="/booklist/日期/1/">按出版日期排序</a>
           &nbsp;/&nbsp;
-
-          <a href="#">按评价排序</a>
+          <a href="/booklist/评分/1/">按评分排序</a>
     </span>
   </div>
-            {% endif %}
+
   {% endif %}
 {% for book in booklist %}
   <ul class="subject-list">
@@ -112,7 +111,7 @@
         <span class="rating_nums">评分：{{ book.score }}</span>
 
     <span class="pl">
-        (462881人评价)
+        ({{ book.comments_num }}人评价)
     </span>
   </div>
 
