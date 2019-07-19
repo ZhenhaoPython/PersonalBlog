@@ -6,8 +6,8 @@
 
     <div id="dale_book_subject_top_icon"></div>
 <h1>
-    {% for book in book_list %}
-    <span property="v:itemreviewed">{{ book.title }}</span>
+
+    <span property="v:itemreviewed">{{ book_list.title }}</span>
     <div class="clear"></div>
 </h1>
 
@@ -32,8 +32,8 @@
 
 
   <a class="nbg"
-      href="/static/{{ book.img }}" title="{{ book.title }}">
-    <img src="/static/{{ book.img }}" title="点击看大图" alt="{{ book.title }}"
+      href="/static/{{ book_list.img }}" title="{{ book_list.title }}">
+    <img src="/static/{{ book_list.img }}" title="点击看大图" alt="{{ book_list.title }}"
          rel="v:photo" style="width: 135px;max-height: 200px;">
   </a>
 
@@ -44,23 +44,23 @@
 <div id="info" class="">
 
     <span class="pl">作者:</span>&nbsp;
-        <a href="https://book.douban.com/author/4537266/">
-                {{ book.author }}</a>
+                {{ book_list.author }}
     <br>
 
-    <span class="pl">出版社:</span> {{ book.press }}<br/>
+    <span class="pl">出版社:</span> {{ book_list.press }}<br/>
 
 
-    <span class="pl">出版年:</span> {{ book.press_year }}<br/>
-    <span class="pl">评分:</span> {{ book.score }}<br/>
+    <span class="pl">出版年:</span> {{ book_list.press_year }}<br/>
+    <span class="pl">评分:</span> {{ book_list.score }}<br/>
 
-    <span class="pl">页数:</span> {{ book.page }}<br/>
+    <span class="pl">页数:</span> {{ book_list.page }}<br/>
 
-    <span class="pl">定价:</span> {{ book.price }}<br/>
+    <span class="pl">定价:</span> {{ book_list.price }}<br/>
 
-    <span class="pl">装帧:</span> {{ book.binding }}<br/>
+    <span class="pl">装帧:</span> {{ book_list.binding }}<br/>
 
-    <span class="pl">丛书:</span>{{ book.series }}<br>
+    <span class="pl">丛书:</span>{{ book_list.series }}<br>
+    <span class="p1" style="display: none" id="bookid">{{ book_list.id }}</span>
 
 </div>
 
@@ -96,7 +96,7 @@
 .intro p{text-indent:2em;word-break:normal;}
 </style>
 <div class="intro">
-    <p>{{ book.imtroducyion }}</p></div>
+    <p>{{ book_list.imtroducyion }}</p></div>
 
       </div>
 
@@ -154,7 +154,7 @@
 .intro p{text-indent:2em;word-break:normal;}
 </style>
 <div class="intro">
-    <p>{{ book.content }}</p></div>
+    <p>{{ book_list.content }}</p></div>
 
             </div>
       </div>
@@ -189,12 +189,11 @@ $(function(){$(".knnlike a").click(function(){return moreurl(this,{'from':'knnli
 <div id="db-rec-section" class="block5 subject_show knnlike">
 
   <h2>
-    <span class="">喜欢读&#34;{{ book.title }}&#34;的人也喜欢</span>
+    <span class="">喜欢读&#34;{{ book_list.title }}&#34;的人也喜欢</span>
       &nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;&nbsp;&middot;
 
   </h2>
 
-{% endfor %}
   <div class="content clearfix">
 {% for types in type_list %}
       <dl class="" style="width:115px;height: 216.6px;">
@@ -232,7 +231,7 @@ $(function(){$(".knnlike a").click(function(){return moreurl(this,{'from':'knnli
         <div class="comment">
             <h3>
                 <span class="comment-info">
-                    <a href="#">{{ message.name }}</a>
+                    <span style="color: #00A5E4">{{ message.name }}</span>
                     <span>{{ message.data }}</span>
                 </span>
             </h3>
@@ -248,28 +247,12 @@ $(function(){$(".knnlike a").click(function(){return moreurl(this,{'from':'knnli
 
 
     </div>
-        <p>&gt; <a href="https://book.douban.com/subject/25862578/comments/">更多短评>></a></p>
+        <p>&gt; <a href="https://book.douban.com/subject/25862578/comments/">更多短评({{ book_list.comments_num }})>></a></p>
     <script src="https://img3.doubanio.com/f/book/f334de0b97baf7506d0c181ff24dc61f9a7fca64/js/book/subject/short_comment_vote.js"></script>
     <script src="https://img3.doubanio.com/f/book/39eace58cab8aaeec45a44e878bf0ed06f2ed0a4/js/book/subject/short_comment_nav.js"></script>
 
 
 <link rel="stylesheet" href="https://img3.doubanio.com/misc/mixed_static/5b893040c800d5cd.css">
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-	jax: ["input/TeX", "output/HTML-CSS"],
-    extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js","TeX/noUndefined.js"],
-    tex2jax: {
-		inlineMath: [ ["($", "$)"], ['\\(','\\)'] ],
-		displayMath: [ ["($$","$$)"], ['\\[','\\]']],
-		skipTags: ["script","noscript","style","textarea"],
-		processEscapes: true,
-		processEnvironments: true,
-		preview: "TeX"
-	},
-	showProcessingMessages: false
-  });
-</script>
 
 </div>
 <script type="text/javascript">
@@ -453,7 +436,7 @@ $(function(){if($.browser.msie && $.browser.version == 6.0){
 {% for rend in reading_list %}
 <div class="">
 
-    <div class="ll"><a href="https://www.douban.com/people/181011941/"><img src="/static{{ read.image }}" class="pil" alt="{{ read.name }}" /></a></div>
+    <div class="ll"><a href="https://www.douban.com/people/181011941/"><img src="/static/{{ read.image }}" class="pil" alt="{{ read.name }}" /></a></div>
     <div style="padding-left:60px"><a class="" href="https://www.douban.com/people/181011941/">{{ read.name }}</a><br/>
       <div class="pl ll">          {{ read.data }}          浏览过      </div>
 
@@ -467,13 +450,13 @@ $(function(){if($.browser.msie && $.browser.version == 6.0){
       <h2>在这评论：</h2>
 
       <div style="width: 300px;height: 300px;">
-          <form method="post">
+          <form method="post" >
               {% csrf_token %}
                 <div >
-                    <input type="text" name="pinglun" placeholder="评论：" style="width: 300px;height: 50px;border: #000 1px solid;border-radius: 10px;overflow: hidden;">
+                    <input type="text" name="pinglun" id="id_contents" placeholder="评论：" style="width: 300px;height: 50px;border: #000 1px solid;border-radius: 10px;overflow: hidden;">
                 </div>
 
-                  <input type="submit" value="提交" style="margin-left: 250px;margin-top:10px;width: 50px;height:25px;color:#fff;background-color: rgb(51,118,169)">
+              <button type="submit" id="submit" style="margin-left: 250px;margin-top:10px;width: 50px;height:25px;color:#fff;background-color: rgb(51,118,169)">提交</button>
           </form>
       </div>
   </div>
@@ -482,18 +465,6 @@ $(function(){if($.browser.msie && $.browser.version == 6.0){
       <div class="extra">
 <!-- douban ad begin -->
 <div id="dale_book_subject_bottom_super_banner"></div>
-<script type="text/javascript">
-    (function (global) {
-        var body = global.document.body,
-            html = global.document.documentElement;
-
-        var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-        if (height >= 2000) {
-            (global.DoubanAdSlots = global.DoubanAdSlots || []).push('dale_book_subject_bottom_super_banner');
-        }
-    })(this);
-</script>
-<!-- douban ad end -->
 
       </div>
     </div>
@@ -502,4 +473,31 @@ $(function(){if($.browser.msie && $.browser.version == 6.0){
     </div>
 
 {% endblock %}
-
+{% block script %}
+{#    <script>#}
+{#        $(document).ready(function(){#}
+{#            $.ajaxSetup({#}
+{#                 data: {csrfmiddlewaretoken: '{{ csrf_token }}' },#}
+{#            });#}
+{#        $('#formadd').click(function(){#}
+{#                var content = $("#id_contents").val();//获得form中用户输入的name 注意这里的id_name 与你html中的id一致#}
+{#                var bookid = document.getElementById('bookid').val();#}
+{#                alert(bookid);#}
+{#                $.ajax({#}
+{#                    type:"POST",#}
+{#                    data: {name:content},#}
+{#                    url: "/details/bookid/", //后台处理函数的url 这里用的是static url 需要与urls.py中的name一致#}
+{#                    cache: false,#}
+{#                    dataType: "html",#}
+{#                    success: function(result, statues, xml){#}
+{#                        alert(result);                                         //成功时弹出view传回来的结果#}
+{#                    },#}
+{#                    error: function(){#}
+{#                        alert("false");#}
+{#                    }#}
+{#                });#}
+{#                return false;#}
+{#            });#}
+{#        });#}
+{#    </script>#}
+{% endblock %}

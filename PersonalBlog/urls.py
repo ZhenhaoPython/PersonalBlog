@@ -25,5 +25,7 @@ urlpatterns = [
     path('register/',register),
     path('logout/',logout),
     re_path('booklist/(\w+)/(\d+)/',book_list),
-    path('home/',prefack_home)
+    re_path('home/(\d+)',prefack_home),
+    path('ajax_data',ajax_data),
+    re_path('search/(\w+)',search)
 ]

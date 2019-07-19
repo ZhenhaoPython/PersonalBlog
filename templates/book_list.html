@@ -32,20 +32,9 @@
 
     <script>var _body_start = new Date();</script>
 
-
-
-
-
     <link href="//img3.doubanio.com/dae/accounts/resources/2f48733/shire/bundle.css" rel="stylesheet" type="text/css">
 
     <script src="//img3.doubanio.com/dae/accounts/resources/2f48733/shire/bundle.js" defer="defer"></script>
-
-
-
-
-
-
-
 
     <link href="//img3.doubanio.com/dae/accounts/resources/2f48733/book/bundle.css" rel="stylesheet" type="text/css">
 
@@ -57,8 +46,99 @@
 
     <div id="wrapper">
 
+    {% if types == 'search' %}
+        <div id="content">
 
-  <div id="content">
+    <h1>搜索到以下内容：</h1>
+
+    <div class="grid-16-8 clearfix">
+
+      <div class="article">
+  <div id="subject_list">
+
+    {% if types == '全部' or types == '日期' or types == '评分'  %}
+
+  <div class="clearfix">
+    <span class="rr greyinput">
+        <a href="/booklist/全部/1/">综合排序</a>
+          &nbsp;/&nbsp;
+          <a href="/booklist/日期/1/">按出版日期排序</a>
+          &nbsp;/&nbsp;
+          <a href="/booklist/评分/1/">按评分排序</a>
+    </span>
+  </div>
+
+  {% endif %}
+{% for book in booklist %}
+  <ul class="subject-list">
+
+  <li class="subject-item">
+    <div class="pic">
+      <a class="nbg" href="/details/{{ book.id }}/">
+        <img class="" src="/static/{{ book.img }}"
+          width="90">
+      </a>
+    </div>
+    <div class="info">
+      <h2 class="">
+
+  <a href="/details/{{ book.id }}" title="{{ book.title }}">
+
+    {{ book.title }}
+  </a>
+
+      </h2>
+      <div class="pub">
+
+  {{ book.author }} / {{ book.press }} / {{ book.press_year }} / {{ book.price }}
+
+      </div>
+
+  <div class="star clearfix">
+        <span class="rating_nums">评分：{{ book.score }}</span>
+
+    <span class="pl">
+        ({{ book.comments_num }}人评价)
+    </span>
+  </div>
+
+    <p>评价 </p>
+      <div class="ft">
+
+  <div class="collect-info">
+  </div>
+
+
+      </div>
+
+    </div>
+  </li>
+{% endfor %}
+
+  </ul>
+
+        <div class="paginator">
+       {% for pages in page_range %}
+            <a href="/booklist/{{ types }}/{{ pages }}/" >{{ pages }}</a>
+        {% endfor %}
+        </div>
+
+
+  </div>
+</div>
+      <div class="aside">
+
+  <br/>
+  <div id="dale_book_tag_top_right"></div>
+
+      </div>
+      <div class="extra">
+
+      </div>
+    </div>
+  </div>
+    {% else %}
+        <div id="content">
 
     <h1>{{ types }}</h1>
 
@@ -150,7 +230,7 @@
       </div>
     </div>
   </div>
-
+    {% endif %}
 
 </body>
 </html>

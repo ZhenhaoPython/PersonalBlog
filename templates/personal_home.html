@@ -24,6 +24,7 @@
     }
     </style>
 {% endblock %}
+
 {% block content %}
     <div style="float:left;">
     <form method="post" enctype="multipart/form-data">
@@ -34,45 +35,49 @@
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="昵称" placeholder="昵称" class="td">
+                    <input type="text" name="nickname" placeholder="{{ user_list.nickname }}" class="td">
                 </td>
                 <td rowspan="7">
                     <div style="margin-left: 45px;margin-bottom: 220px ;">
-                    <img src="/static/img/nemo.jpg" style="width: 150px;height: 150px;">
-                    <p><input type="file" name="img" id="img" ></p></div>
+                        <img src="/static/{{ user_list.head_portrait }}" style="width: 150px;height: 150px;">
+                        <p>
+                            <input type="file" name="img" id="imgs" >
+                        </p>
+                    </div>
+
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="xingming" placeholder="姓名" class="td">
+                    <input type="text" name="xingming" placeholder="{{ user_list.xingming }}" class="td">
                 </td>
 
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="age" placeholder="年龄" class="td">
+                    <input type="text" name="age" placeholder="{{ user_list.age }}" class="td">
                 </td>
 
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="work" placeholder="工作" class="td">
+                    <input type="text" name="work" placeholder="{{ user_list.work }}" class="td">
                 </td>
 
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="tel" placeholder="电话" class="td">
+                    <input type="text" name="tel" placeholder="{{ user_list.tel }}" class="td">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="address" placeholder="地址" class="td">
+                    <input type="text" name="address" placeholder="{{ user_list.address }}" class="td">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="button" value="提交" id="submit" class="td">
+                    <input type="submit" value="提交"  class="td">
                 </td>
             </tr>
         </table>
@@ -80,19 +85,35 @@
     </div>
     <div style="float: left;width: 1px;height: 500px;background-color: #ccc;margin-left: 200px;"></div >
     <div style="float: left">
-        <p class="label"><a href="#">编辑资料</a></p>
+        <p class="label"><a href="/home/{{ user_list.id }}/">编辑资料</a></p>
         <p class="label"><a href="#">修改密码</a></p>
     </div>
 {% endblock %}
-{% block script %}
-    <script>
-    $(
-        function () {
-            $('#submit').click(function () {
-                var forms = new FormData();
-                forms.append('image',document.getElementById('img').files[0])
-            })
-        }
-    )
-    </script>
-{% endblock %}
+{#{% block script %}#}
+{#       <script>#}
+{#    $(#}
+{#        function () {#}
+{#            $('#submit').click(function () {#}
+{#                var forms = new FormData();#}
+{#                forms.append('image',document.getElementById('imgs').files[0]);#}
+{#                forms.append('csrfmiddlewaretoken','{{ csrf_token }}');#}
+{##}
+{#                $.ajax({#}
+{#                    url:'/ajax_data/',#}
+{#                    type:'POST',#}
+{#                    data:forms,#}
+{#                    processData: false,#}
+{#                    contentType:false,#}
+{#                    success:function (data) {#}
+{#                        console.log(data)#}
+{#                    },#}
+{#                    error:function (error) {#}
+{#                        console.log(error)#}
+{#                    }#}
+{#                })#}
+{##}
+{#            })#}
+{#        }#}
+{#    )#}
+{#    </script>#}
+{#{% endblock %}#}

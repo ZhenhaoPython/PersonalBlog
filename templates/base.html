@@ -15,6 +15,7 @@
     <script>var _head_start = new Date();</script>
 
     <link rel="stylesheet" href="https://img3.doubanio.com/misc/mixed_static/13419eb47c7c7dd7.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 </head>
 <body>
@@ -25,7 +26,7 @@
 <link href="//img3.doubanio.com/dae/accounts/resources/2f48733/shire/bundle.css" rel="stylesheet" type="text/css">
 
 <script>
-    ;window._GLOBAL_NAV = {
+    window._GLOBAL_NAV = {
         DOUBAN_URL: "https://www.douban.com",
         N_NEW_NOTIS: 0,
         N_NEW_DOUMAIL: 0
@@ -35,6 +36,7 @@
 <link href="//img3.doubanio.com/dae/accounts/resources/2f48733/book/bundle.css" rel="stylesheet" type="text/css">
 {% block style %}
 {% endblock %}
+
 <div id="db-nav-book" class="nav">
     <div class="nav-wrap">
         <div class="nav-primary">
@@ -42,14 +44,14 @@
                 <a href="#">我的博客</a>
             </div>
             <div class="nav-search">
-                <form  method="post">
+                <form  method="post" action="/search/search/">
                     {% csrf_token %}
                     <fieldset>
                         <legend>搜索：</legend>
                         <label for="inp-query">
                         </label>
                         <div class="inp"><input id="inp-query" name="search_text" size="22" maxlength="60"
-                                                placeholder="暂未实现" value=""></div>
+                                                placeholder="书名" value=""></div>
                         <div class="inp-btn"><input type="submit" value="搜索"></div>
                         <input type="hidden" name="cat" value="1001"/>
                     </fieldset>
@@ -66,7 +68,7 @@
                 <li style="margin-right: 100px;"><a href="/booklist/高评分榜单/1/">高评分榜单</a></li>
                 <li style="margin-right: 100px;"><a href="#">联系我</a></li>
                 {% if cookie %}
-                    <li style="float: right;"><a href="#" style="margin-right: 5px;" >欢迎您：<span style="color: #00A5E4">&nbsp;{{ cookie.nickname }}</span></a> &nbsp;| <a href="/logout/" style="color: #00A5E4;margin-left: 5px;">退出</a></li>
+                    <li style="float: right;"><a href="/home/{{ cookie.id }}/" style="margin-right: 5px;" >欢迎您：<span style="color: #00A5E4">&nbsp;{{ cookie.nickname }}</span></a> &nbsp;| <a href="/logout/" style="color: #00A5E4;margin-left: 5px;">退出</a></li>
                 {% else %}
                     <li style="float: right;"><a href="/login/" style="margin-right: 15px" >登录</a>|<a href="/register/" style="margin-left: 15px;">注册</a></li>
                 {% endif %}
@@ -79,6 +81,9 @@
 {% block content %}
 
 {% endblock %}
+</body>
 {% block script %}
+
 {% endblock %}
 
+</html>>

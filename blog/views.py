@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponseRedirect
 from blog.models import *
-import hashlib,time
-from pymysql import connect
+import hashlib,time,re
+from django.http import JsonResponse
 
 
 def setPassword(password):
@@ -21,7 +21,6 @@ def loginValid(fun):
 
 def base(request):
     cookie = request.COOKIES.get('email')
-
     return render(request,'base.html',locals())
 
 def index(request):
@@ -48,8 +47,6 @@ def details(request,id):
     if request.method == 'POST':
         if cookie:
             content = request.POST.get('pinglun')
-            articles = Tushu.objects.filter(id=id)
-            article = [article.title for article in articles][0]
             nickname = cookie.nickname
             message = Message()
             message.data =time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -60,11 +57,10 @@ def details(request,id):
             tushu = Tushu.objects.get(id=id)
             tushu.comments_num = str(int(tushu.comments_num)+1)
             tushu.save()
-
         else:
             return HttpResponseRedirect('/login/')
-    book_list = Tushu.objects.filter(id=id)
-    type_list = Tushu.objects.filter(types=[book.types for book in book_list][0])[:10]
+    book_list = Tushu.objects.get(id=id)
+    type_list = Tushu.objects.filter(types=book_list.types)[:10]
     message_list = Tushu.objects.get(id=id).message_set.order_by('-data')
     reading_list = Tushu.objects.get(id=id).read_set.order_by('-data')[:5]
     return render(request,'details.html',locals())
@@ -137,9 +133,48 @@ def book_list(request,types,page):
 
     return render(request,'book_list.html',locals())
 
-def prefack_home(request):
-    return render(request,'personal_home.html')
+def prefack_home(request,id):
+    cookie = request.COOKIES.get('email')
 
-def home(request):
+    cookie = User.objects.get(email=cookie)
     if request.method=='POST':
+        nickname = request.POST.get('nickname')
+        xingming = request.POST.get('xingming')
+        age = request.POST.get('age')
+        work = request.POST.get('work')
+        tel = request.POST.get('tel')
+        address = request.POST.get('address')
         img = request.FILES.get('img')
+        user = User.objects.get(id=id)
+        user.nickname=nickname
+        user.xingming=xingming
+        user.age=age
+        user.work=work
+        user.tel=tel
+        user.address=address
+        user.head_portrait=img
+        user.save()
+    user_list = User.objects.get(id=id)
+    return render(request,'personal_home.html',locals())
+def ajax_data(request):
+    result = {'data':'error'}
+    if request.method =='POST':
+        img = request.FILES.get('img')
+        user = User.objects.get(id=1)
+        user.head_portrait=img
+        user.save()
+        result['data']='ok'
+    return JsonResponse(result)
+
+
+def search(request,types):
+    title = str(request.POST.get('search_text'))
+    search_list = Tushu.objects.all().order_by('-press_year')
+    booklist = []
+    for book in search_list:
+        ok = re.findall(r'.*'+title+'.*',book.title)
+        if ok:
+            booklist.append(book)
+    if booklist == []:
+        types='很抱歉客官 暂无此书 -_- 请给我留言 我会尽快添加'
+    return render(request,'book_list.html',locals())
